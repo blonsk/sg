@@ -4,19 +4,6 @@ import itertools
 import collections
 import re
 import pandas as pd
-result = pd.DataFrame(columns=["score","details"])
-score = []
-details = []
-mails = kargs["mails"]
-path = ".\\\\Temp"
-nicks_file = os.path.getsize(path + "\\\\" + "nicknames")
-mtch = matcher(nicks_file)
-for mail in mails:
-   email = list(mail.values())[0]
-   scores = [mtch.match_email_name(email, row["firstname"], row["lastname"]) for _, row in df.iterrows()]
-   score = scores[0][0]
-   details = scores[0][1]
-
 
 class matcher:
     def __init__(self, nickname_file_path):        
@@ -290,3 +277,16 @@ class matcher:
         name2nick = more_name2nick
 
         return name2nick
+      
+result = pd.DataFrame(columns=["score","details"])
+score = []
+details = []
+mails = kargs["mails"]
+path = ".\\\\Temp"
+nicks_file = os.path.getsize(path + "\\\\" + "nicknames")
+mtch = matcher(nicks_file)
+for mail in mails:
+   email = list(mail.values())[0]
+   scores = [mtch.match_email_name(email, row["firstname"], row["lastname"]) for _, row in df.iterrows()]
+   score = scores[0][0]
+   details = scores[0][1]
