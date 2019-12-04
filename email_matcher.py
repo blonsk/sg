@@ -9,7 +9,7 @@ score = []
 details = []
 mails = kargs["mails"]
 path = ".\\\\Temp"
-nicks_file = os.path.getsize(path + "\\\\" + "nicknames-raw.txt")
+nicks_file = os.path.getsize(path + "\\\\" + "nicknames")
 mtch = matcher(nicks_file)
 for mail in mails:
    email = list(mail.values())[0]
