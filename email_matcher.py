@@ -258,7 +258,7 @@ class matcher:
         with open(file_path, errors='ignore', encoding='Latin-1') as file:
             for line in file:
                 if line != os.linesep:
-                    line_formatted = line.strip().lower().replace(';', '').replace('.', '').replace('\n', '')
+                    line_formatted = line.strip().lower().replace(';', '').replace('.', '').replace(os.linesep, '')
                     sees = next(iter(re.findall(r'\(see ([a-zA-Z, ]*)\)', line_formatted)), None)
 
                     line_formatted = re.sub(r'\(see [a-zA-Z, ]*\)', '', line_formatted)
