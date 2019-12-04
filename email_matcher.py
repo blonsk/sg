@@ -290,3 +290,5 @@ for mail in mails:
    scores = [mtch.match_email_name(email, row["firstname"], row["lastname"]) for _, row in df.iterrows()]
    score = scores[0][0]
    details = scores[0][1]
+result["score"] = [score]
+result["details"] = [details]
