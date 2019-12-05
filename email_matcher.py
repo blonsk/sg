@@ -244,7 +244,7 @@ class matcher:
         
         with open(file_path, errors='ignore', encoding='Latin-1') as file:
             for line in file:
-                line_formatted = line.strip().lower().replace(';', '').replace('.', '')
+                line_formatted = line.strip().lower()#.replace(';', '').replace('.', '')
                 sees = next(iter(re.findall(r'\(see ([a-zA-Z, ]*)\)', line_formatted)), None)
                 line_formatted = re.sub(r'\(see [a-zA-Z, ]*\)', '', line_formatted)
                 line_formatted = line_formatted.split(' – ')[0]
