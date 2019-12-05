@@ -244,26 +244,25 @@ class matcher:
         
         with open(file_path, errors='ignore', encoding='Latin-1') as file:
             for line in file:
-                if line != os.linesep:
-                    line_formatted = line.strip().lower().replace(';', '').replace('.', '').replace(os.linesep, '')
-                    sees = next(iter(re.findall(r'\(see ([a-zA-Z, ]*)\)', line_formatted)), None)
-
-                    line_formatted = re.sub(r'\(see [a-zA-Z, ]*\)', '', line_formatted)
-                    line_formatted = line_formatted.split(' – ')[0]
-                    cut = line_formatted.split(' \x96 ')
-                    names = cut[0].split(', ')
-                    names = [name.strip() for name in names]
-                    if len(cut) == 2:
-                        surnames = cut[1].split(', ')
-                        surnames = set([name.strip() for name in surnames])
-                    name2nick.update({name: surnames for name in names})
-
-                    if sees:
-                        sees = sees.split(', ')
-                        sees = set([name.strip() for name in sees])
-                        for see in sees:
-                            for name in names:
-                                see_alsos[name].update({see})
+                line_formatted = line.strip().lower().replace(';', '').replace('.', '').replace(os.linesep, '')
+                sees = next(iter(re.findall(r'\(see ([a-zA-Z, ]*)\)', line_formatted)), None)
+                line_formatted = re.sub(r'\(see [a-zA-Z, ]*\)', '', line_formatted)
+                line_formatted = line_formatted.split(' – ')[0]
+                cut = line_formatted.split(' \x96 ')
+                names = cut[0].split(', ')
+                names = [name.strip() for name in names]
+                if len(cut) == 2:
+                    surnames = cut[1].split(', ')
+                    surnames = set([name.strip() for name in surnames])
+                name2nick.update({name: surnames for name in names})
+                if sees:
+                    sees = sees.split(', ')
+                    sees = set([name.strip() for name in sees])
+                    for see in sees:
+                        for name in names:
+                            see_alsos[name].update({see})
+            #if line != os.linesep:
+                    
 
         for see, alsos in see_alsos.items():
             for also in alsos:
